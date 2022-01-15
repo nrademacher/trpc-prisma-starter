@@ -52,6 +52,7 @@
     "@types/react": "^17.0.20",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.26.0",
+    "autoprefixer": "^10.4.2",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-next": "^12.0.0",
@@ -64,8 +65,10 @@
     "jest-playwright-preset": "^1.4.5",
     "npm-run-all": "^4.1.5",
     "playwright": "^1.14.1",
+    "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "prisma": "^3.7.0",
+    "tailwindcss": "^3.0.15",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.3.0",
     "typescript": "4.5.4"

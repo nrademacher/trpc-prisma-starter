@@ -9,6 +9,8 @@ import { ReactElement, ReactNode } from 'react';
 import { AppRouter } from 'server/routers/_app';
 import superjson from 'superjson';
 
+import 'styles/globals.css'
+
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
