@@ -26,11 +26,6 @@
   "prisma": {
     "seed": "yarn ts-node prisma/seed.ts"
   },
-  "prettier": {
-    "printWidth": 80,
-    "trailingComma": "all",
-    "singleQuote": true
-  },
   "dependencies": {
     "@prisma/client": "^3.0.1",
     "@trpc/client": "^9.17.0",
