@@ -1,3 +1,7 @@
+Fork of the official [tRPC Prisma + tRPC example](https://github.com/trpc/trpc/tree/main/examples/next-prisma-starter)
+
+---
+
 # Prisma + tRPC
 
 ## Features
