@@ -21,6 +21,7 @@ const PostViewPage: NextPageWithLayout = () => {
             <em>Created {data.createdAt.toLocaleDateString()}</em>
 
             <p>{data.text}</p>
+            <p>Author: {data.user.name}</p>
 
             <h2>Raw data:</h2>
             <pre>{JSON.stringify(data, null, 4)}</pre>

@@ -10,6 +10,7 @@ import { AppRouter } from 'server/routers/_app'
 import superjson from 'superjson'
 
 import 'styles/globals.css'
+import { SessionProvider } from 'next-auth/react'
 
 export type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode
@@ -19,8 +20,14 @@ type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 }
 
-const MyApp = (({ Component, pageProps }: AppPropsWithLayout) => {
-    const getLayout = Component.getLayout ?? (page => <DefaultLayout>{page}</DefaultLayout>)
+const MyApp = (({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLayout) => {
+    const getLayout =
+        Component.getLayout ??
+        (page => (
+            <SessionProvider session={session}>
+                <DefaultLayout>{page}</DefaultLayout>
+            </SessionProvider>
+        ))
 
     return getLayout(<Component {...pageProps} />)
 }) as AppType
