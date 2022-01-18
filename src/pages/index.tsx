@@ -78,7 +78,6 @@ const IndexPage: NextPageWithLayout = () => {
                             {userQuery.data &&
                                 postsQuery.data &&
                                 postsQuery.data
-                                    .filter(item => item.user.id === userQuery.data!.id)
                                     .map(item => (
                                         <article className="rounded p-4 border min-w-[25rem]" key={item.id}>
                                             <h3 className="text-xl font-semibold">{item.title}</h3>
@@ -154,22 +153,3 @@ const IndexPage: NextPageWithLayout = () => {
 
 export default IndexPage
 
-/**
- * If you want to statically render this page
- * - Export `appRouter` & `createContext` from [trpc].ts
- * - Make the `opts` object optional on `createContext()`
- *
- * @link https://trpc.io/docs/ssg
- */
-// export const getStaticProps = async (context: GetStaticPropsContext) => {
-//     const ssr = await ssgInit(context)
-
-//     await ssr.fetchQuery('post.all')
-
-//     return {
-//         props: {
-//             trpcState: ssr.dehydrate(),
-//         },
-//         revalidate: 1,
-//     }
-// }

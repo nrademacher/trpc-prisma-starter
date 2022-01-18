@@ -9,7 +9,6 @@ import { appRouter } from 'server/routers/_app'
 /**
  * Initialize static site rendering tRPC helpers.
  * Provides a method to prefetch tRPC-queries in a `getStaticProps`-function.
- * Automatically prefetches i18n based on the passed in `context`-object to prevent i18n-flickering.
  * Make sure to `return { props: { trpcState: ssr.dehydrate() } }` at the end.
  */
 export async function ssgInit<TParams extends { locale?: string }>(opts: GetStaticPropsContext<TParams>) {

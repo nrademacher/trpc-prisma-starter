@@ -11,6 +11,8 @@ import superjson from 'superjson'
 
 import 'styles/globals.css'
 import { SessionProvider } from 'next-auth/react'
+import { Maybe } from '@trpc/server'
+import { TRPCClientError } from '@trpc/client'
 
 export type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode
@@ -51,7 +53,6 @@ function getBaseUrl() {
 }
 
 export default withTRPC<AppRouter>({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     config() {
         /**
          * If you want to use SSR, you need to use the server's full URL
@@ -73,32 +74,40 @@ export default withTRPC<AppRouter>({
                 }),
             ],
             /**
+             * @link https://react-query.tanstack.com/reference/QueryClient
+             */
+            queryClientConfig: {
+                defaultOptions: {
+                    queries: {
+                        /**
+                         * 1s should be enough to just keep identical query waterfalls low
+                         * @example if one page components uses a query that is also used further down the tree
+                         */
+                        staleTime: 1000,
+                        /**
+                         * Retry `useQuery()` calls depending on this function
+                         */
+                        retry(failureCount, _err) {
+                            const err = _err as never as Maybe<TRPCClientError<AppRouter>>
+                            const code = err?.data?.code
+                            if (code === 'BAD_REQUEST' || code === 'FORBIDDEN' || code === 'UNAUTHORIZED') {
+                                // if input data is wrong or you're not authorized there's no point retrying a query
+                                return false
+                            }
+                            const MAX_QUERY_RETRIES = 3
+                            return failureCount < MAX_QUERY_RETRIES
+                        },
+                    },
+                },
+            },
+            /**
              * @link https://trpc.io/docs/data-transformers
              */
             transformer: superjson,
-            /**
-             * @link https://react-query.tanstack.com/reference/QueryClient
-             */
-            // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
         }
     },
     /**
      * @link https://trpc.io/docs/ssr
      */
-    ssr: true,
-    /**
-     * Set headers or status code when doing SSR
-     */
-    responseMeta({ clientErrors }) {
-        if (clientErrors.length) {
-            // propagate http first error from API calls
-            return {
-                status: clientErrors[0].data?.httpStatus ?? 500,
-            }
-        }
-
-        // for app caching with SSR see https://trpc.io/docs/caching
-
-        return {}
-    },
+    ssr: false,
 })(MyApp)
