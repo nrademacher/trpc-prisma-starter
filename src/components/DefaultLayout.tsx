@@ -9,7 +9,6 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
             <Head>
                 <meta lang="en" charSet="UTF-8" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <title>Prisma Starter</title>
             </Head>
 
             <div className="p-8 subpixel-antialiased h-screen w-screen">{children}</div>
