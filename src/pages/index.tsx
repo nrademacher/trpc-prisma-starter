@@ -4,8 +4,6 @@ import { trpc } from 'utils/trpc'
 import { signOut, useSession } from 'next-auth/react'
 import { FieldValues, useForm } from 'react-hook-form'
 import { useEffect } from 'react'
-import { GetStaticPropsContext } from 'next'
-import { ssgInit } from 'utils/ssg'
 
 const IndexPage: NextPageWithLayout = () => {
     const { data: session } = useSession()
@@ -79,14 +77,16 @@ const IndexPage: NextPageWithLayout = () => {
                                 postsQuery.data &&
                                 postsQuery.data
                                     .map(item => (
-                                        <article className="rounded p-4 border min-w-[25rem]" key={item.id}>
-                                            <h3 className="text-xl font-semibold">{item.title}</h3>
+                                        <article className="rounded p-4 border dark:border-neutral-300 min-w-[25rem]" key={item.id}>
+                                            <h3 className="mb-4 text-xl font-semibold">{item.title}</h3>
                                             <h4>
-                                                By <span className="font-medium">{item.user.name}</span>
+                                                By <span className="mb-4 font-medium">{item.user.name}</span>
                                             </h4>
+                                            <div className="mt-1.5">
                                             <Link href={`/post/${item.id}`}>
                                                 <a className="text-blue-500 hover:underline text-sm">View more</a>
                                             </Link>
+                                            </div>
                                         </article>
                                     ))}
                         </section>
@@ -106,7 +106,7 @@ const IndexPage: NextPageWithLayout = () => {
                                     type="text"
                                     id="title"
                                     {...register('title')}
-                                    className="rounded border border-gray-300"
+                                    className="rounded border dark:bg-neutral-300 border-gray-300"
                                     disabled={addPost.isLoading}
                                 />
                             </div>
@@ -119,11 +119,11 @@ const IndexPage: NextPageWithLayout = () => {
                                     id="text"
                                     {...register('text')}
                                     disabled={addPost.isLoading}
-                                    className="rounded border border-gray-300"
+                                    className="rounded border border-gray-300 dark:bg-neutral-300"
                                 />
                             </div>
                             <input
-                                className="cursor-pointer w-1/3 border rounded border-black p-2 self-end font-medium"
+                                className="cursor-pointer w-1/3 border rounded p-2 self-end font-medium"
                                 type="submit"
                                 disabled={addPost.isLoading}
                             />

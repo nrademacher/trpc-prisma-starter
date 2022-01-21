@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import type { AppType } from 'next/dist/shared/lib/utils'
-
 import type { AppRouter } from 'server/routers/_app'
+
 import type { Maybe } from '@trpc/server'
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
 import { loggerLink } from '@trpc/client/links/loggerLink'

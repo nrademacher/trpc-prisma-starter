@@ -9,9 +9,12 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
             <Head>
                 <meta lang="en" charSet="UTF-8" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <title>tRPC Prisma Starter</title>
             </Head>
 
-            <div className="p-8 subpixel-antialiased h-screen w-screen">{children}</div>
+            <div className="p-8 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 subpixel-antialiased h-screen w-screen">
+                {children}
+            </div>
 
             {process.env.NODE_ENV !== 'production' && <ReactQueryDevtools initialIsOpen={false} />}
         </>
