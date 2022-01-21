@@ -1,10 +1,10 @@
 import { GetStaticPropsContext } from 'next'
 import superjson from 'superjson'
 
-import prisma from './prisma'
+import { prisma } from '../lib'
 
 import { createSSGHelpers } from '@trpc/react/ssg'
-import { appRouter } from 'server/routers/_app'
+import { appRouter } from '@/server/routers/_app'
 
 /**
  * Initialize static site rendering tRPC helpers.

@@ -1,9 +1,14 @@
-import { NextPageWithLayout } from './_app'
-import Link from 'next/link'
-import { trpc } from 'utils/trpc'
+import type { NextPageWithLayout } from './_app'
+
 import { signOut, useSession } from 'next-auth/react'
-import { FieldValues, useForm } from 'react-hook-form'
+
+import { trpc } from '@/lib'
+
 import { useEffect } from 'react'
+
+import { FieldValues, useForm } from 'react-hook-form'
+
+import Link from 'next/link'
 
 const IndexPage: NextPageWithLayout = () => {
     const { data: session } = useSession()

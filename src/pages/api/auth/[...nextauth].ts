@@ -1,8 +1,8 @@
 import NextAuth, { Session } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-import { ErrorCode, verifyPassword } from 'utils/auth'
-import prisma from '../../../utils/prisma'
+import { ErrorCode, verifyPassword } from '@/utils'
+import { prisma } from '@/lib'
 
 export default NextAuth({
     session: {

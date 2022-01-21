@@ -1,8 +1,10 @@
+import { FieldValues, useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
+
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { FieldValues, useForm } from 'react-hook-form'
-import { trpc } from '../utils/trpc'
+
+import { trpc } from '@/lib'
 
 export default function SignUp() {
     const { register, handleSubmit } = useForm()

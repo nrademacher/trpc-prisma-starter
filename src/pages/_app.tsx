@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import type { AppType } from 'next/dist/shared/lib/utils'
-import type { AppRouter } from 'server/routers/_app'
+import type { AppRouter } from '@/server/routers/_app'
 
 import type { Maybe } from '@trpc/server'
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
@@ -10,7 +10,7 @@ import { withTRPC } from '@trpc/next'
 import { TRPCClientError } from '@trpc/client'
 
 import { SessionProvider } from 'next-auth/react'
-import { DefaultLayout } from 'components'
+import { DefaultLayout } from '@/components'
 
 import superjson from 'superjson'
 
