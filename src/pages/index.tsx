@@ -1,13 +1,8 @@
 import type { NextPageWithLayout } from './_app'
-
 import { signOut, useSession } from 'next-auth/react'
-
-import { trpc } from '@/lib'
-
+import { trpc } from '@/lib/trpc'
 import { useEffect } from 'react'
-
 import { FieldValues, useForm } from 'react-hook-form'
-
 import Link from 'next/link'
 
 const IndexPage: NextPageWithLayout = () => {
@@ -80,20 +75,22 @@ const IndexPage: NextPageWithLayout = () => {
                         <section className="grid grid-cols-3 gap-4">
                             {userQuery.data &&
                                 postsQuery.data &&
-                                postsQuery.data
-                                    .map(item => (
-                                        <article className="rounded p-4 border dark:border-neutral-300 min-w-[25rem]" key={item.id}>
-                                            <h3 className="mb-4 text-xl font-semibold">{item.title}</h3>
-                                            <h4>
-                                                By <span className="mb-4 font-medium">{item.user.name}</span>
-                                            </h4>
-                                            <div className="mt-1.5">
+                                postsQuery.data.map(item => (
+                                    <article
+                                        className="rounded p-4 border dark:border-neutral-300 min-w-[25rem]"
+                                        key={item.id}
+                                    >
+                                        <h3 className="mb-4 text-xl font-semibold">{item.title}</h3>
+                                        <h4>
+                                            By <span className="mb-4 font-medium">{item.user.name}</span>
+                                        </h4>
+                                        <div className="mt-1.5">
                                             <Link href={`/post/${item.id}`}>
                                                 <a className="text-blue-500 hover:underline text-sm">View more</a>
                                             </Link>
-                                            </div>
-                                        </article>
-                                    ))}
+                                        </div>
+                                    </article>
+                                ))}
                         </section>
 
                         <form
@@ -157,4 +154,3 @@ const IndexPage: NextPageWithLayout = () => {
 }
 
 export default IndexPage
-

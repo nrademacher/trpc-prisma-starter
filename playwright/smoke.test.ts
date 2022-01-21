@@ -6,9 +6,14 @@ test('go to /', async () => {
   await page.waitForSelector(`text=Starter`);
 });
 
-test('test 404', async () => {
-  const res = await page.goto('http://localhost:3000/post/not-found');
-  expect(res?.status()).toBe(404);
+test('go to post', async () => {
+  await page.goto('http://localhost:3000');
+
+  await page.waitForSelector(`text=Sign Up`);
+  
+  await page.click("text=Sign Up");
+
+  expect(page.locator(`text=Signup`)).toBeDefined();
 });
 
 export {};

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
-import { trpc } from '@/lib'
+import { trpc } from '@/lib/trpc'
 
 export default function SignUp() {
     const { register, handleSubmit } = useForm()
