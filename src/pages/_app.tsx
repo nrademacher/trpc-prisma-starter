@@ -14,7 +14,7 @@ import { DefaultLayout } from '@/components'
 
 import superjson from 'superjson'
 
-import 'styles/globals.css'
+import '@/styles/globals.css'
 
 export type NextPageWithLayout = NextPage & {
     getLayout?: (page: React.ReactElement) => React.ReactNode
