@@ -1,8 +1,10 @@
+import { FieldValues, useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
+
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { FieldValues, useForm } from 'react-hook-form'
-import { trpc } from '../utils/trpc'
+
+import { trpc } from '@/lib/trpc'
 
 export default function SignUp() {
     const { register, handleSubmit } = useForm()
@@ -31,7 +33,7 @@ export default function SignUp() {
     return (
         <main className="flex flex-col justify-center items-center h-full">
             <div>
-                <h2 className="mb-6 text-3xl font-bold text-center">Signup</h2>
+                <h2 className="mb-6 text-3xl font-bold text-center">Sign Up</h2>
                 <form
                     className="flex flex-col space-y-8 border rounded p-4 w-[20rem]"
                     onSubmit={handleSubmit(async (data: FieldValues) => {

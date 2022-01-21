@@ -3,10 +3,10 @@
  * This is an example router, you can delete this file and then update `../pages/api/trpc/[trpc].tsx`
  */
 
-import { createRouter } from 'server/create-router'
+import { createRouter } from '@/server/create-router'
 import { z } from 'zod'
 import { TRPCError } from '@trpc/server'
-import { ErrorCode, hashPassword } from 'utils/auth'
+import { ErrorCode, hashPassword } from '@/utils/auth'
 
 export const userRouter = createRouter()
     // create

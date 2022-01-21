@@ -1,11 +1,9 @@
-import { NextPageWithLayout } from './_app'
-import Link from 'next/link'
-import { trpc } from 'utils/trpc'
+import type { NextPageWithLayout } from './_app'
 import { signOut, useSession } from 'next-auth/react'
-import { FieldValues, useForm } from 'react-hook-form'
+import { trpc } from '@/lib/trpc'
 import { useEffect } from 'react'
-import { GetStaticPropsContext } from 'next'
-import { ssgInit } from 'utils/ssg'
+import { FieldValues, useForm } from 'react-hook-form'
+import Link from 'next/link'
 
 const IndexPage: NextPageWithLayout = () => {
     const { data: session } = useSession()
@@ -77,18 +75,22 @@ const IndexPage: NextPageWithLayout = () => {
                         <section className="grid grid-cols-3 gap-4">
                             {userQuery.data &&
                                 postsQuery.data &&
-                                postsQuery.data
-                                    .map(item => (
-                                        <article className="rounded p-4 border min-w-[25rem]" key={item.id}>
-                                            <h3 className="text-xl font-semibold">{item.title}</h3>
-                                            <h4>
-                                                By <span className="font-medium">{item.user.name}</span>
-                                            </h4>
+                                postsQuery.data.map(item => (
+                                    <article
+                                        className="rounded p-4 border min-w-[25rem]"
+                                        key={item.id}
+                                    >
+                                        <h3 className="mb-4 text-xl font-semibold">{item.title}</h3>
+                                        <h4>
+                                            By <span className="mb-4 font-medium">{item.user.name}</span>
+                                        </h4>
+                                        <div className="mt-1.5">
                                             <Link href={`/post/${item.id}`}>
                                                 <a className="text-blue-500 hover:underline text-sm">View more</a>
                                             </Link>
-                                        </article>
-                                    ))}
+                                        </div>
+                                    </article>
+                                ))}
                         </section>
 
                         <form
@@ -123,7 +125,7 @@ const IndexPage: NextPageWithLayout = () => {
                                 />
                             </div>
                             <input
-                                className="cursor-pointer w-1/3 border rounded border-black p-2 self-end font-medium"
+                                className="cursor-pointer w-1/3 border rounded p-2 self-end font-medium"
                                 type="submit"
                                 disabled={addPost.isLoading}
                             />
@@ -152,4 +154,3 @@ const IndexPage: NextPageWithLayout = () => {
 }
 
 export default IndexPage
-

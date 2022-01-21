@@ -1,7 +1,9 @@
+import type { NextPageWithLayout } from '../_app'
+
 import { useRouter } from 'next/router'
-import { trpc } from 'utils/trpc'
+import { trpc } from '@/lib/trpc'
+
 import NextError from 'next/error'
-import { NextPageWithLayout } from 'pages/_app'
 
 const PostViewPage: NextPageWithLayout = () => {
     const id = useRouter().query.id as string
@@ -14,7 +16,9 @@ const PostViewPage: NextPageWithLayout = () => {
     if (postQuery.status !== 'success') {
         return <>Loading...</>
     }
+
     const { data } = postQuery
+
     return (
         <>
             <h1>{data.title}</h1>

@@ -1,7 +1,6 @@
 import { compare, hash } from 'bcrypt'
 import type { Session } from 'next-auth'
-import { getSession as getSessionInner, GetSessionParams, signIn } from 'next-auth/react'
-import { promisify } from 'util'
+import { getSession as getSessionInner, GetSessionParams } from 'next-auth/react'
 
 export async function hashPassword(password: string) {
     const hashedPassword = await hash(password, 12)
@@ -19,8 +18,6 @@ export async function getSession(options: GetSessionParams): Promise<Session | n
     // that these are equal are ensured in `[...nextauth]`'s callback
     return session as Session | null
 }
-
-export const signInAsync = promisify(signIn)
 
 export enum ErrorCode {
     UserNotFound = 'user-not-found',
