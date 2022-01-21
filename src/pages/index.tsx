@@ -77,7 +77,7 @@ const IndexPage: NextPageWithLayout = () => {
                                 postsQuery.data &&
                                 postsQuery.data.map(item => (
                                     <article
-                                        className="rounded p-4 border dark:border-neutral-300 min-w-[25rem]"
+                                        className="rounded p-4 border min-w-[25rem]"
                                         key={item.id}
                                     >
                                         <h3 className="mb-4 text-xl font-semibold">{item.title}</h3>
@@ -108,7 +108,7 @@ const IndexPage: NextPageWithLayout = () => {
                                     type="text"
                                     id="title"
                                     {...register('title')}
-                                    className="rounded border dark:bg-neutral-300 border-gray-300"
+                                    className="rounded border border-gray-300"
                                     disabled={addPost.isLoading}
                                 />
                             </div>
@@ -121,7 +121,7 @@ const IndexPage: NextPageWithLayout = () => {
                                     id="text"
                                     {...register('text')}
                                     disabled={addPost.isLoading}
-                                    className="rounded border border-gray-300 dark:bg-neutral-300"
+                                    className="rounded border border-gray-300"
                                 />
                             </div>
                             <input

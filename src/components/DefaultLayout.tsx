@@ -12,7 +12,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                 <title>tRPC Prisma Starter</title>
             </Head>
 
-            <div className="p-8 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 subpixel-antialiased h-screen w-screen">
+            <div className="p-8 bg-neutral-50 text-neutral-900 subpixel-antialiased h-screen w-screen">
                 {children}
             </div>
 
