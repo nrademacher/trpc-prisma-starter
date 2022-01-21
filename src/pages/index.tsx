@@ -76,10 +76,7 @@ const IndexPage: NextPageWithLayout = () => {
                             {userQuery.data &&
                                 postsQuery.data &&
                                 postsQuery.data.map(item => (
-                                    <article
-                                        className="rounded p-4 border min-w-[25rem]"
-                                        key={item.id}
-                                    >
+                                    <article className="rounded p-4 border min-w-[25rem]" key={item.id}>
                                         <h3 className="mb-4 text-xl font-semibold">{item.title}</h3>
                                         <h4>
                                             By <span className="mb-4 font-medium">{item.user.name}</span>

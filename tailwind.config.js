@@ -1,8 +1,5 @@
 module.exports = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'media', // or false or 'class'
   theme: {
     extend: {},
@@ -11,4 +8,4 @@ module.exports = {
     extend: {},
   },
   plugins: [require('@tailwindcss/forms')],
-};
+}

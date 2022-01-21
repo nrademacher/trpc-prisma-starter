@@ -12,9 +12,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                 <title>tRPC Prisma Starter</title>
             </Head>
 
-            <div className="p-8 bg-neutral-50 text-neutral-900 subpixel-antialiased h-screen w-screen">
-                {children}
-            </div>
+            <div className="p-8 bg-neutral-50 text-neutral-900 subpixel-antialiased h-screen w-screen">{children}</div>
 
             {process.env.NODE_ENV !== 'production' && <ReactQueryDevtools initialIsOpen={false} />}
         </>
