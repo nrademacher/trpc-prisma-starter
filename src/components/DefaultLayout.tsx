@@ -9,6 +9,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
             <Head>
                 <meta lang="en" charSet="UTF-8" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <meta name="description" content="A full-stack starter template powered by tRPC, Prisma, and Next.js" />
                 <title>tRPC Prisma Starter</title>
             </Head>
 
