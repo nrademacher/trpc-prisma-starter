@@ -19,12 +19,6 @@ const IndexPage: NextPageWithLayout = () => {
         }
     }, [postsQuery.data, utils])
 
-    const userQuery = trpc.useQuery(['user.current'])
-
-    useEffect(() => {
-        userQuery.data && utils.prefetchQuery(['user.byId', { id: userQuery.data.id }])
-    }, [userQuery.data, utils])
-
     const addPost = trpc.useMutation('post.add', {
         async onSuccess() {
             // refetches posts after a post is added
@@ -50,10 +44,10 @@ const IndexPage: NextPageWithLayout = () => {
                         on Twitter.
                     </p>
                 </div>
-                {session && userQuery.data && (
+                {session && (
                     <div className="flex items-baseline space-x-8">
                         <span className="text-sm">
-                            Welcome, <span className="font-semibold">{userQuery.data.name}</span>
+                            Welcome, <span className="font-semibold">{session.user.name}</span>
                         </span>
                         <a
                             onClick={async () => await signOut()}
@@ -73,7 +67,7 @@ const IndexPage: NextPageWithLayout = () => {
 
                     <main className="flex items-start space-x-8">
                         <section className="grid grid-cols-3 gap-4">
-                            {userQuery.data &&
+                            {
                                 postsQuery.data &&
                                 postsQuery.data.map(item => (
                                     <article className="rounded p-4 border min-w-[25rem]" key={item.id}>
