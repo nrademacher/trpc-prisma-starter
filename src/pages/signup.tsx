@@ -1,13 +1,12 @@
 import { FieldValues, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { UserInput } from '@/server/routers/user/user-inputs'
 import { useEffect, useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { trpc } from '@/lib/trpc'
 
 export default function SignUp() {
-    const { register, handleSubmit } = useForm()
-    const [password, setPassword] = useState('')
-
     const { status } = useSession()
     const router = useRouter()
 
@@ -26,6 +25,9 @@ export default function SignUp() {
         },
     })
 
+    const { register, handleSubmit } = useForm({ resolver: zodResolver(UserInput), mode: 'onSubmit' })
+    const [password, setPassword] = useState('')
+
     if (status !== 'unauthenticated') return null
 
     return (
@@ -37,7 +39,7 @@ export default function SignUp() {
                     onSubmit={handleSubmit(async (data: FieldValues) => {
                         setPassword(data.password)
                         await createUser.mutateAsync({
-                            name: data.username,
+                            name: data.name,
                             password: data.password,
                             email: data.email,
                         })
@@ -51,7 +53,7 @@ export default function SignUp() {
                             <input
                                 id="username"
                                 type="text"
-                                {...register('username')}
+                                {...register('name')}
                                 className="rounded border border-gray-300"
                             />
                         </div>

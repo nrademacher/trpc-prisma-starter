@@ -3,10 +3,12 @@ import { signOut, useSession } from 'next-auth/react'
 import { trpc } from '@/lib/trpc'
 import { useEffect } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { CreatePostInput } from '@/server/routers/post/post-inputs'
 import Link from 'next/link'
 
 const IndexPage: NextPageWithLayout = () => {
-    const { data: session } = useSession()
+    const { data: session, status: sessionStatus } = useSession()
 
     const utils = trpc.useContext()
 
@@ -26,7 +28,9 @@ const IndexPage: NextPageWithLayout = () => {
         },
     })
 
-    const { register, handleSubmit, reset } = useForm()
+    const { register, handleSubmit, reset } = useForm({ resolver: zodResolver(CreatePostInput) , mode: 'onSubmit' })
+
+    if (sessionStatus === 'loading' || postsQuery.status === 'loading') return <div>Loading ...</div>
 
     return (
         <div className="">
@@ -62,7 +66,6 @@ const IndexPage: NextPageWithLayout = () => {
                 <>
                     <h2 className="mb-6 text-3xl font-semibold">
                         Posts
-                        {postsQuery.status === 'loading' && '(loading)'}
                     </h2>
 
                     <main className="flex items-start space-x-8">
