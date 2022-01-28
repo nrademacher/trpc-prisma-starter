@@ -3,11 +3,11 @@
  * This is an example router, you can delete this file and then update `../pages/api/trpc/[trpc].tsx`
  */
 
-import { createRouter } from '@/server/create-router'
+import { createRouter, createProtectedRouter } from '@/server'
 import { z } from 'zod'
 import { TRPCError } from '@trpc/server'
 import { ErrorCode, hashPassword, verifyPassword } from '@/utils/auth'
-import { createProtectedRouter } from '..'
+import { UserInput } from './user-inputs'
 
 export const publicUserRouter = createRouter()
     .query('session', {
@@ -16,13 +16,7 @@ export const publicUserRouter = createRouter()
         },
     })
     .mutation('create', {
-        input: z.object({
-            email: z.string().email(),
-            password: z
-                .string()
-                .min(8),
-            name: z.string().min(3).max(64),
-        }),
+        input: UserInput,
         async resolve({ ctx, input }) {
             const { email, password, name } = input
 
@@ -104,13 +98,7 @@ export const authenticatedUserRouter = createProtectedRouter()
     .mutation('edit', {
         input: z.object({
             password: z.string(),
-            data: z.object({
-                email: z.string().email().optional(),
-                password: z
-                    .string()
-                    .min(8),
-                name: z.string().min(3).max(64),
-            }),
+            data: UserInput,
         }),
         async resolve({ ctx, input }) {
             const { password, data } = input
@@ -138,4 +126,3 @@ export const authenticatedUserRouter = createProtectedRouter()
     })
 
 export const userRouter = createRouter().merge(publicUserRouter).merge(authenticatedUserRouter)
-

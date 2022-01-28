@@ -7,14 +7,12 @@ import { createRouter } from '@/server/create-router'
 import { z } from 'zod'
 import { TRPCError } from '@trpc/server'
 import { ErrorCode } from '@/utils/auth'
+import { CreatePostInput, EditPostInput } from './post-inputs'
 
 export const postRouter = createRouter()
     // create
     .mutation('add', {
-        input: z.object({
-            title: z.string().min(1).max(32),
-            text: z.string().min(1),
-        }),
+        input: CreatePostInput,
         async resolve({ ctx, input }) {
             if (!ctx.user) {
                 throw new TRPCError({ message: ErrorCode.UserNotFound, code: 'NOT_FOUND' })
@@ -79,18 +77,15 @@ export const postRouter = createRouter()
     })
     // update
     .mutation('edit', {
-        input: z.object({
-            id: z.string().uuid(),
-            data: z.object({
-                title: z.string().min(1).max(32).optional(),
-                text: z.string().min(1).optional(),
-            }),
-        }),
+        input: EditPostInput,
         async resolve({ ctx, input }) {
-            const { id, data } = input
+            const { id, title, text } = input
             const post = await ctx.prisma.post.update({
                 where: { id },
-                data,
+                data: {
+                    title,
+                    text,
+                },
             })
             return post
         },
