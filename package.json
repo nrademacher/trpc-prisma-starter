@@ -42,7 +42,7 @@
     "react-hook-form": "^7.25.3",
     "react-query": "^3.34.14",
     "start-server-and-test": "^1.12.0",
-    "superjson": "^1.7.4",
+    "superjson": "^1.8.1",
     "zod": "^3.0.0"
   },
   "devDependencies": {
