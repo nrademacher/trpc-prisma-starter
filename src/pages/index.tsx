@@ -28,7 +28,7 @@ const IndexPage: NextPageWithLayout = () => {
         },
     })
 
-    const { register, handleSubmit, reset } = useForm({ resolver: zodResolver(CreatePostInput) , mode: 'onSubmit' })
+    const { register, handleSubmit, reset } = useForm({ resolver: zodResolver(CreatePostInput), mode: 'onSubmit' })
 
     if (sessionStatus === 'loading' || postsQuery.status === 'loading') return <div>Loading ...</div>
 
@@ -64,9 +64,7 @@ const IndexPage: NextPageWithLayout = () => {
             </header>
             {session ? (
                 <>
-                    <h2 className="mb-6 text-3xl font-semibold">
-                        Posts
-                    </h2>
+                    <h2 className="mb-6 text-3xl font-semibold">Posts</h2>
 
                     <main className="flex items-start space-x-8">
                         <section className="grid grid-cols-3 gap-4">
