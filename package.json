@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.8.8",
-    "@prisma/client": "^3.10.0",
+    "@prisma/client": "^3.11.1",
     "@trpc/client": "^9.17.0",
     "@trpc/next": "^9.17.0",
     "@trpc/react": "^9.17.0",
