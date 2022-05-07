@@ -17,10 +17,10 @@
     "types": ["@types/jest", "jest-playwright-preset", "expect-playwright"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
-    "incremental": true,
+    "incremental": false
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }
