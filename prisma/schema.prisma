@@ -2,12 +2,15 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "postgres"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_URL")
+  referentialIntegrity = "prisma"
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 generator zod {
@@ -23,8 +26,8 @@ model User {
   createdAt DateTime @unique @default(now())
   updatedAt DateTime @unique @default(now())
 
-  name         String  @unique
-  email        String  @unique
+  name         String @unique
+  email        String @unique
   passwordHash String
 
   posts Post[] @relation(name: "PostToUser")
