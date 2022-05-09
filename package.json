@@ -68,7 +68,7 @@
     "eslint-config-next": "^12.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "husky": ">=6",
+    "husky": ">=8",
     "jest": "^28.1.0",
     "jest-playwright": "^0.0.1",
     "jest-playwright-preset": "^1.4.5",
