@@ -46,7 +46,7 @@
     "@trpc/server": "^9.23.2",
     "bcrypt": "^5.0.1",
     "next": "^12.1.0",
-    "next-auth": "^4.2.1",
+    "next-auth": "^4.3.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-hook-form": "^7.27.1",
