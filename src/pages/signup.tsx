@@ -1,7 +1,7 @@
 import { FieldValues, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { UserInput } from '@/server/routers/user/user-inputs'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { trpc } from '@/lib/trpc'
@@ -25,8 +25,8 @@ export default function SignUp() {
         },
     })
 
-    const { register, handleSubmit } = useForm({ resolver: zodResolver(UserInput), mode: 'onSubmit' })
-    const [password, setPassword] = useState('')
+    const { register, handleSubmit, watch } = useForm({ resolver: zodResolver(UserInput), mode: 'onSubmit' })
+    const password = watch('password')
 
     if (status !== 'unauthenticated') return null
 
@@ -37,7 +37,6 @@ export default function SignUp() {
                 <form
                     className="flex w-[20rem] flex-col space-y-8 rounded border p-4"
                     onSubmit={handleSubmit(async (data: FieldValues) => {
-                        setPassword(data.password)
                         await createUser.mutateAsync({
                             name: data.name,
                             password: data.password,
