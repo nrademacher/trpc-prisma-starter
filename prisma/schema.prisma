@@ -23,8 +23,8 @@ model User {
   createdAt DateTime @unique @default(now())
   updatedAt DateTime @unique @default(now())
 
-  name         String  @unique
-  email        String  @unique
+  name         String @unique
+  email        String @unique
   passwordHash String
 
   posts Post[] @relation(name: "PostToUser")

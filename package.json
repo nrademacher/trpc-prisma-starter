@@ -21,7 +21,8 @@
     "test": "run-s test:*",
     "test:e2e": "playwright test",
     "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\"",
-    "postinstall": "prisma generate",
+    "generate-schemas": "prisma generate && prisma format",
+    "postinstall": "yarn generate-schemas",
     "prepare": "husky install"
   },
   "lint-staged": {
