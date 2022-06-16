@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.8.8",
-    "@prisma/client": "^3.10.0",
+    "@prisma/client": "^3.15.2",
     "@trpc/client": "^9.23.2",
     "@trpc/next": "^9.23.2",
     "@trpc/react": "^9.23.2",
@@ -70,6 +70,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "husky": ">=6",
     "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.1",
     "jest-playwright": "^0.0.1",
     "jest-playwright-preset": "^1.4.5",
     "lint-staged": ">=12",
